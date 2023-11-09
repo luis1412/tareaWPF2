@@ -11,8 +11,8 @@ namespace Clases2.Clases
 
         public enum TipoMedico : uint
         {
-            SeguridadSocial = 1,
-            Muface = 2,
+            SS = 1,
+            MUFACE = 2,
         }
 
         TipoMedico tipoMedico { get; set; }
