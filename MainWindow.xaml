@@ -1,0 +1,81 @@
+﻿<Window x:Class="ejercicio8DI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ejercicio8DI"
+        mc:Ignorable="d"
+        Title="IES Trassierra" Height="450" Width="700" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <ControlTemplate x:Key="SeguroMedico" TargetType="{x:Type ListBox}">
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <StackPanel x:Name="stkPanel" Grid.ColumnSpan="2" Margin="0,0,0,8">
+            <Menu x:Name="mimenu">
+                <MenuItem x:Name="menuArchivo" Header="_Archivo">
+                    <MenuItem Header="Abrir"
+                          Click="Abrir_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Salir"
+                          Click="Salir_Click">
+                        <MenuItem.Icon>
+                            <Image x:Name="menuSalir"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="menuFuente" Header="_Fuente">
+                    <MenuItem Header="_Negrita" IsCheckable="True"
+                        Checked="Negrita_Checked"
+                        Unchecked="Negrita_Unchecked"/>
+                    <MenuItem Header="_Cursiva" IsCheckable="True"
+                        Checked="Cursiva_Checked"
+                        Unchecked="Cursiva_Unchecked"/>
+                </MenuItem>
+                <MenuItem x:Name="menuFiltros" Header="_Filtros">
+                    <MenuItem Header="_Edad mayor de 35 (nombre, apellidos, edad y materia)" 
+                              Click="filtro1"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="_Año Ingreso igual o superior a 2010 (todo)" 
+                              Click="filtro2"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Año ingreso igual o superior a 2010 y Estado Civil es casado (nombre, apellidos, año y e.civil)"
+                              Click="filtro3"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Estatura superior a 160 y ordenados por Estatura descendente y Peso descendente (nombre, apellidos, edad, estatura, peso )" 
+                              Click="filtro4"></MenuItem>
+
+                </MenuItem>
+                <MenuItem x:Name="menuAgrupacion" Header="_Agrupación">
+                    <MenuItem Header="Agrupar por E.Civil y mostrar nombre, apellidos, edad, peso y estatura"
+                              Click="agrupacion1"></MenuItem>
+                    <MenuItem Header="Agrupar por E.Civil y mostrar cuántos hay en cada grupo"
+                              Click="agrupacion2"></MenuItem>
+                    <MenuItem Header="Agrupar por Rangos de Edad, orden descendente por Edad y mostrar nombre, apellidos, email"
+                              Click="agrupacion3"></MenuItem>
+                    <MenuItem Header="Agrupar por Seguro Médico, cuando la edad es igual o superior a 40, orden peso y apellidos(nombre, apellidos, seguro, peso)"
+                              Click="agrupacion4"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <Grid>
+            <Label Content="Nombre" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top" Width="60"/>
+            <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Margin="84,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Email" HorizontalAlignment="Left" Margin="258,70,0,0" VerticalAlignment="Top" Width="60"/>
+            <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="323,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Apellidos" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Width="60"/>
+            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="84,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214"/>
+            <Label Content="Edad" HorizontalAlignment="Left" Margin="19,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.716,0.502"/>
+            <ComboBox x:Name="cbEdad" HorizontalAlignment="Left" Margin="84,154,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.395,0.275"/>
+            <Label x:Name="Año_Ingeso" Content="Año Ingreso&#xD;&#xA;" HorizontalAlignment="Left" Margin="168,151,0,0" VerticalAlignment="Top" Height="27"/>
+            <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="258,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
+            <CheckBox Content="Destino definitivo" HorizontalAlignment="Left" Margin="323,108,0,0" VerticalAlignment="Top"/>
+            <Label Content="Tipo Funcionario" HorizontalAlignment="Left" Margin="350,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D"/>
+            <Label Content="S. Médico" HorizontalAlignment="Left" Margin="493,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D"/>
+            <RadioButton x:Name="rbPracticas" Content="En Prácticas" HorizontalAlignment="Left" Margin="364,196,0,0" VerticalAlignment="Top" GroupName="tipoF"/>
+            <RadioButton x:Name="rbCarrera" Content="De Carrera" HorizontalAlignment="Left" Margin="364,216,0,0" VerticalAlignment="Top" GroupName="tipoF"/>
+            <ListBox Template="{DynamicResource SeguroMedico}" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="555,165,53,223"/>
+        </Grid>
+
+    </Grid>
+</Window>
