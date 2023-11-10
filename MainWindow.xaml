@@ -65,39 +65,39 @@
             <Label Content="Nombre" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top" Width="60"/>
             <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Margin="3,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbNombre_TextChanged" Grid.Column="1"/>
             <Label Content="Email" HorizontalAlignment="Left" Margin="177,70,0,0" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
-            <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="242,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
+            <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="242,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Grid.Column="1" IsReadOnly="True"/>
             <Label Content="Apellidos" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Width="60"/>
-            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="3,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
+            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="3,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Grid.Column="1" IsReadOnly="True"/>
             <Label Content="Edad" HorizontalAlignment="Left" Margin="19,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.716,0.502"/>
             <ComboBox x:Name="cbEdad" HorizontalAlignment="Left" Margin="3,154,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.395,0.275" Grid.Column="1"/>
             <Label x:Name="Año_Ingeso" Content="Año Ingreso&#xD;&#xA;" HorizontalAlignment="Left" Margin="87,151,0,0" VerticalAlignment="Top" Height="27" Grid.Column="1"/>
-            <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="177,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" Grid.Column="1"/>
+            <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="177,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" Grid.Column="1" IsReadOnly="True"/>
             <CheckBox x:Name="destino" Content="Destino definitivo" HorizontalAlignment="Left" Margin="242,108,0,0" VerticalAlignment="Top" Grid.Column="1"/>
             <Label Content="Tipo Funcionario" HorizontalAlignment="Left" Margin="269,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D" Grid.Column="1"/>
             <Label Content="S. Médico" HorizontalAlignment="Left" Margin="412,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D" Grid.Column="1"/>
             <RadioButton x:Name="rbPracticas" Content="En Prácticas" HorizontalAlignment="Left" Margin="283,196,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
             <RadioButton x:Name="rbCarrera" Content="De Carrera" HorizontalAlignment="Left" Margin="283,216,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
-            <ListBox Template="{DynamicResource SeguroMedico}" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="474,165,53,223" Grid.Column="1"/>
-            <Image x:Name="imagen" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+            <ListBox x:Name="seguroMedico"  Margin="474,165,43,181" Grid.Column="1"/>
+            <Image x:Name="imagenProfesor" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         </Grid>
         <Grid x:Name="gridBotones">
-        <Button HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="31" Width="36"
-                    x:Name="btnPrimero" Click="btnPrimero_Click" Grid.Column="1">
+            <Button HorizontalAlignment="Left" Margin="146,286,0,0" VerticalAlignment="Top" Height="31" Width="36"
+                    x:Name="btnPrimero" Click="btnPrimero_Click">
                 <DockPanel>
                     <Image x:Name="imgPrimero"></Image>
                 </DockPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="123,267,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnSegundo_Click" Grid.Column="1">
+            <Button HorizontalAlignment="Left" Margin="266,286,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnSegundo_Click">
                 <DockPanel>
                     <Image x:Name="imgSegundo"></Image>
                 </DockPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="324,267,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnTercero_Click" Grid.Column="1">
+            <Button HorizontalAlignment="Left" Margin="427,285,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnTercero_Click">
                 <DockPanel>
                     <Image x:Name="imgTercero"></Image>
                 </DockPanel>
             </Button>
-            <Button  HorizontalAlignment="Left" Margin="403,267,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnCuarto_Click" Grid.Column="1">
+            <Button  HorizontalAlignment="Left" Margin="522,284,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnCuarto_Click">
                 <DockPanel>
                     <Image x:Name="imgCuarto"></Image>
                 </DockPanel>

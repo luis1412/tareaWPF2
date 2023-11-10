@@ -30,6 +30,7 @@ namespace Clases2.Clases
             DestinoDefinitivo = (texto[7].Equals("true")?true:false);
             tipoMedico = (EmpleadoPublico.TipoMedico) Enum.Parse(typeof(EmpleadoPublico.TipoMedico), texto[8]);
             nombreImagen = texto[9];
+            this.rutaFoto = "profesores\\" + nombreImagen;
         }
         public ProfesorFuncionario(string nombre, string apellidos, int edad, string materia, int anyoIngresoCuerpo, bool destinoDefinitivo) : base(nombre, apellidos, edad, materia)
         {

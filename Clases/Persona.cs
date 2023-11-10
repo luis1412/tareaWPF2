@@ -10,7 +10,7 @@ namespace Clases2.Clases
     {
         private string nombre;
 
-        private string rutaFoto { get; set; }
+        public string rutaFoto { get; set; }
         public string Nombre { get; set; }
         public string apellidos { get; set; }
         public int edad { get; set; }
@@ -18,12 +18,13 @@ namespace Clases2.Clases
 
         public Persona() { }
 
-        public Persona(string nombre, string apellidos, int edad)
+        public Persona(string nombre, string apellidos, int edad, string rutaFoto)
         {
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.edad = edad;
             this.email = GenerarEmail();
+            this.rutaFoto = "profesores\\" + rutaFoto;
         }
 
         public virtual String GenerarEmail()

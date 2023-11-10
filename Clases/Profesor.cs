@@ -11,12 +11,12 @@ namespace Clases2.Clases
         public string Materia { get; set; }
         public TipoFuncionario TipoProfesor { get; set; }
 
-        public Profesor(string nombre, string apellidos, int edad, string materia) : base(nombre, apellidos, edad)
+        public Profesor(string nombre, string apellidos, int edad, string materia, string rutaFoto) : base(nombre, apellidos, edad, rutaFoto)
         {
             Materia = materia;
         }
 
-        public Profesor(string nombre, string apellidos, int edad) : base(nombre, apellidos, edad)
+        public Profesor(string nombre, string apellidos, int edad, string rutaFoto) : base(nombre, apellidos, edad, rutaFoto)
         {
         }
 

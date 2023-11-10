@@ -25,16 +25,20 @@ namespace ejercicio8DI
     {
         List<ProfesorFuncionario> listaProfesores = new List<ProfesorFuncionario>();
         int indiceActualProfesor = 0;
+        const string rutaFija = "..\\..\\..\\imagenes\\";
         public MainWindow()
         {
             InitializeComponent();
+            seguroMedico.Items.Add("SS");
+            seguroMedico.Items.Add("MUFACE");
+
             gridBotones.IsEnabled = false;
             gridContenido.IsEnabled = false;
             menuFiltros.IsEnabled = false;
             menuAgrupacion.IsEnabled = false;
 
-           const string rutaFija = "..\\..\\..\\imagenes\\";
-            //string miruta = profe.RutaFoto;
+          
+
             imgPrimero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaIzquierda.png") as ImageSource;
             imgSegundo.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaIzquierda.png") as ImageSource;
             imgTercero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaDerecha.png") as ImageSource;
@@ -52,8 +56,17 @@ namespace ejercicio8DI
             tbApellidos.Text = profesorActual.apellidos;
             tbEmail.Text = profesorActual.email;
             destino.IsChecked = profesorActual.DestinoDefinitivo;
-            cbEdad.Items.Add(profesorActual.edad);
-            cbEdad.SelectedIndex = 0;
+            for (int i = 22; i < 70; i++)
+            {
+                cbEdad.Items.Add(i);
+            }
+            foreach (int i in cbEdad.Items)
+            {
+                if (i == profesorActual.edad)
+                {
+                    cbEdad.SelectedItem = i;
+                }
+            }
             tbIngreso.Text = profesorActual.AnyoIngresoCuerpo + "";
             if (profesorActual.tipoFuncionario == Profesor.TipoFuncionario.EnPracticas)
             {
@@ -63,8 +76,17 @@ namespace ejercicio8DI
             {
                 rbCarrera.IsChecked = true;
             }
-            
-            
+            if (profesorActual.tipoMedico == EmpleadoPublico.TipoMedico.SS)
+            {
+                seguroMedico.SelectedIndex = 0;
+            }
+            else { 
+                seguroMedico.SelectedIndex = 1;
+            }
+            string rutaCompleta = rutaFija + profesorActual.rutaFoto;
+            imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString(rutaCompleta) as ImageSource;
+
+
         }
 
 
