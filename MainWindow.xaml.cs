@@ -90,11 +90,6 @@ namespace ejercicio8DI
         }
 
 
-        private void filtro1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Abrir_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -223,6 +218,11 @@ namespace ejercicio8DI
 
         }
 
+
+        private void filtro1(object sender, RoutedEventArgs e)
+        {
+            var mayores35 = 
+        }
 
         private void filtro2(object sender, RoutedEventArgs e)
         {
