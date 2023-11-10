@@ -25,7 +25,7 @@ namespace Clases2.Clases
             base.edad = Int32.Parse(texto[2]);
             base.email = texto[3];
             base.Materia = texto[4];
-            base.TipoProfesor = (TipoFuncionario)Enum.Parse(typeof(TipoFuncionario), texto[5]);
+            tipoFuncionario = (TipoFuncionario)Enum.Parse(typeof(TipoFuncionario), texto[5]);
             AnyoIngresoCuerpo = Int32.Parse(texto[6]);
             DestinoDefinitivo = (texto[7].Equals("true")?true:false);
             tipoMedico = (EmpleadoPublico.TipoMedico) Enum.Parse(typeof(EmpleadoPublico.TipoMedico), texto[8]);

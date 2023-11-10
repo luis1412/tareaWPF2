@@ -24,17 +24,22 @@ namespace ejercicio8DI
     public partial class MainWindow : Window
     {
         List<ProfesorFuncionario> listaProfesores = new List<ProfesorFuncionario>();
-
+        int indiceActualProfesor = 0;
         public MainWindow()
         {
             InitializeComponent();
+            gridBotones.IsEnabled = false;
+            gridContenido.IsEnabled = false;
+            menuFiltros.IsEnabled = false;
+            menuAgrupacion.IsEnabled = false;
 
-
-           // const string rutaFija = "..\\..\\..\\imagenes\\";
-            // string miruta = profe.RutaFoto;
-            imgPrimero.Source = (new ImageSourceConverter()).ConvertFromString("Resources/flecha1.png") as ImageSource;
-            imgSegundo.Source = (new ImageSourceConverter()).ConvertFromString("Resources/flecha.png") as ImageSource;
-
+           const string rutaFija = "..\\..\\..\\imagenes\\";
+            //string miruta = profe.RutaFoto;
+            imgPrimero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaIzquierda.png") as ImageSource;
+            imgSegundo.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaIzquierda.png") as ImageSource;
+            imgTercero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaDerecha.png") as ImageSource;
+            imgCuarto.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaDerecha.png") as ImageSource;
+            
         }
 
         private void menuArchivo_Click(object sender, RoutedEventArgs e)
@@ -50,6 +55,14 @@ namespace ejercicio8DI
             cbEdad.Items.Add(profesorActual.edad);
             cbEdad.SelectedIndex = 0;
             tbIngreso.Text = profesorActual.AnyoIngresoCuerpo + "";
+            if (profesorActual.tipoFuncionario == Profesor.TipoFuncionario.EnPracticas)
+            {
+                rbPracticas.IsChecked = true;
+            }
+            else if (profesorActual.tipoFuncionario == Profesor.TipoFuncionario.DeCarrera)
+            {
+                rbCarrera.IsChecked = true;
+            }
             
             
         }
@@ -82,12 +95,43 @@ namespace ejercicio8DI
                         listaProfesores.Add(new ProfesorFuncionario(line));
                     }
                     cargarDatos(listaProfesores[0]);
+                    gridBotones.IsEnabled = true;
+                    gridContenido.IsEnabled = true;
+                    menuFiltros.IsEnabled = true;
+                    menuAgrupacion.IsEnabled = true;
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex);
                 }
             }
+        }
+        private void btnPrimero_Click(object sender, RoutedEventArgs e)
+        {
+            cargarDatos(listaProfesores[0]);
+        }
+
+        private void btnSegundo_Click(object sender, RoutedEventArgs e)
+        {
+            if (indiceActualProfesor > 0)
+            {
+                indiceActualProfesor--;
+                cargarDatos(listaProfesores[indiceActualProfesor]);
+            }
+        }
+
+        private void btnTercero_Click(object sender, RoutedEventArgs e)
+        {
+            if (indiceActualProfesor < listaProfesores.Count-1)
+            {
+                indiceActualProfesor++;
+                cargarDatos(listaProfesores[indiceActualProfesor]);
+            }
+        }
+
+        private void btnCuarto_Click(object sender, RoutedEventArgs e)
+        {
+            cargarDatos(listaProfesores[listaProfesores.Count - 1]);
         }
 
         private void agrupacion2(object sender, RoutedEventArgs e)
@@ -107,17 +151,49 @@ namespace ejercicio8DI
 
         private void Negrita_Checked(object sender, RoutedEventArgs e)
         {
-
+            foreach (var control in gridContenido.Children)
+            {
+                if (control is Control) 
+                {
+                    Control elemento = (Control)control;
+                    elemento.FontWeight = FontWeights.Bold;
+                }
+            }
         }
 
         private void Negrita_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            foreach (var control in gridContenido.Children)
+            {
+                if (control is Control)
+                {
+                    Control elemento = (Control)control;
+                    elemento.FontWeight = FontWeights.Normal;
+                }
+            }
         }
 
         private void Cursiva_Checked(object sender, RoutedEventArgs e)
         {
-
+            foreach (var control in gridContenido.Children)
+            {
+                if (control is Control)
+                {
+                    Control elemento = (Control)control;
+                    elemento.FontStyle = FontStyles.Italic;
+                }
+            }
+        }
+        private void Cursiva_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var control in gridContenido.Children)
+            {
+                if (control is Control)
+                {
+                    Control elemento = (Control)control;
+                    elemento.FontStyle = FontStyles.Normal;
+                }
+            }
         }
 
         private void tbNombre_TextChanged(object sender, TextChangedEventArgs e)
@@ -125,10 +201,6 @@ namespace ejercicio8DI
 
         }
 
-        private void Cursiva_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void filtro2(object sender, RoutedEventArgs e)
         {
@@ -160,9 +232,5 @@ namespace ejercicio8DI
 
         }
 
-        private void btnPrimero_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

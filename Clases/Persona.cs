@@ -10,6 +10,7 @@ namespace Clases2.Clases
     {
         private string nombre;
 
+        private string rutaFoto { get; set; }
         public string Nombre { get; set; }
         public string apellidos { get; set; }
         public int edad { get; set; }

@@ -10,7 +10,7 @@
         <ControlTemplate x:Key="SeguroMedico" TargetType="{x:Type ListBox}">
         </ControlTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="gridPrincipal">
         <StackPanel x:Name="stkPanel" Grid.ColumnSpan="2" Margin="0,0,0,8">
             <Menu x:Name="mimenu">
                 <MenuItem x:Name="menuArchivo" Header="_Archivo" Click="menuArchivo_Click_1">
@@ -24,7 +24,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="menuFuente" Header="_Fuente">
-                    <MenuItem Header="_Negrita" IsCheckable="True"
+                    <MenuItem x:Name="negritaC" Header="_Negrita" IsCheckable="True"
                         Checked="Negrita_Checked"
                         Unchecked="Negrita_Unchecked"/>
                     <MenuItem Header="_Cursiva" IsCheckable="True"
@@ -57,39 +57,51 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-        <Grid Margin="10,22,0,0">
+        <Grid x:Name="gridContenido" Margin="10,22,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="203*"/>
+            </Grid.ColumnDefinitions>
             <Label Content="Nombre" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top" Width="60"/>
-            <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Margin="84,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbNombre_TextChanged"/>
-            <Label Content="Email" HorizontalAlignment="Left" Margin="258,70,0,0" VerticalAlignment="Top" Width="60"/>
-            <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="323,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+            <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Margin="3,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbNombre_TextChanged" Grid.Column="1"/>
+            <Label Content="Email" HorizontalAlignment="Left" Margin="177,70,0,0" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
+            <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="242,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
             <Label Content="Apellidos" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Width="60"/>
-            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="84,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214"/>
+            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="3,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
             <Label Content="Edad" HorizontalAlignment="Left" Margin="19,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.716,0.502"/>
-            <ComboBox x:Name="cbEdad" HorizontalAlignment="Left" Margin="84,154,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.395,0.275"/>
-            <Label x:Name="Año_Ingeso" Content="Año Ingreso&#xD;&#xA;" HorizontalAlignment="Left" Margin="168,151,0,0" VerticalAlignment="Top" Height="27"/>
-            <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="258,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
-            <CheckBox x:Name="destino" Content="Destino definitivo" HorizontalAlignment="Left" Margin="323,108,0,0" VerticalAlignment="Top"/>
-            <Label Content="Tipo Funcionario" HorizontalAlignment="Left" Margin="350,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D"/>
-            <Label Content="S. Médico" HorizontalAlignment="Left" Margin="493,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D"/>
-            <RadioButton x:Name="rbPracticas" Content="En Prácticas" HorizontalAlignment="Left" Margin="364,196,0,0" VerticalAlignment="Top" GroupName="tipoF"/>
-            <RadioButton x:Name="rbCarrera" Content="De Carrera" HorizontalAlignment="Left" Margin="364,216,0,0" VerticalAlignment="Top" GroupName="tipoF"/>
-            <ListBox Template="{DynamicResource SeguroMedico}" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="555,165,53,223"/>
-            <Image x:Name="imagen" HorizontalAlignment="Left" Height="100" Margin="537,23,0,0" VerticalAlignment="Top" Width="100"/>
-            <Button HorizontalAlignment="Left" Margin="108,267,0,0" VerticalAlignment="Top" Height="31" Width="36"
-                    x:Name="btnPrimero" Click="btnPrimero_Click">
+            <ComboBox x:Name="cbEdad" HorizontalAlignment="Left" Margin="3,154,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.395,0.275" Grid.Column="1"/>
+            <Label x:Name="Año_Ingeso" Content="Año Ingreso&#xD;&#xA;" HorizontalAlignment="Left" Margin="87,151,0,0" VerticalAlignment="Top" Height="27" Grid.Column="1"/>
+            <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="177,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" Grid.Column="1"/>
+            <CheckBox x:Name="destino" Content="Destino definitivo" HorizontalAlignment="Left" Margin="242,108,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+            <Label Content="Tipo Funcionario" HorizontalAlignment="Left" Margin="269,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D" Grid.Column="1"/>
+            <Label Content="S. Médico" HorizontalAlignment="Left" Margin="412,165,0,0" VerticalAlignment="Top" Opacity="0.8" Background="White" Foreground="#FF382D2D" Grid.Column="1"/>
+            <RadioButton x:Name="rbPracticas" Content="En Prácticas" HorizontalAlignment="Left" Margin="283,196,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
+            <RadioButton x:Name="rbCarrera" Content="De Carrera" HorizontalAlignment="Left" Margin="283,216,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
+            <ListBox Template="{DynamicResource SeguroMedico}" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="474,165,53,223" Grid.Column="1"/>
+            <Image x:Name="imagen" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        </Grid>
+        <Grid x:Name="gridBotones">
+        <Button HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="31" Width="36"
+                    x:Name="btnPrimero" Click="btnPrimero_Click" Grid.Column="1">
                 <DockPanel>
                     <Image x:Name="imgPrimero"></Image>
                 </DockPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="204,267,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnPrimero_Click">
+            <Button HorizontalAlignment="Left" Margin="123,267,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnSegundo_Click" Grid.Column="1">
                 <DockPanel>
                     <Image x:Name="imgSegundo"></Image>
                 </DockPanel>
             </Button>
-                    
-            <Button Content="" HorizontalAlignment="Left" Margin="405,267,0,0" VerticalAlignment="Top" Height="35" Width="40"/>
-            <Button Content="" HorizontalAlignment="Left" Margin="484,267,0,0" VerticalAlignment="Top" Height="35" Width="40"/>
+            <Button HorizontalAlignment="Left" Margin="324,267,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnTercero_Click" Grid.Column="1">
+                <DockPanel>
+                    <Image x:Name="imgTercero"></Image>
+                </DockPanel>
+            </Button>
+            <Button  HorizontalAlignment="Left" Margin="403,267,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnCuarto_Click" Grid.Column="1">
+                <DockPanel>
+                    <Image x:Name="imgCuarto"></Image>
+                </DockPanel>
+            </Button>
         </Grid>
-
     </Grid>
 </Window>
