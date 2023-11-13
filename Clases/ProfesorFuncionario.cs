@@ -8,11 +8,15 @@ namespace Clases2.Clases
 {
     internal class ProfesorFuncionario : Profesor, EmpleadoPublico
     {
-        public int AnyoIngresoCuerpo;
-        public bool DestinoDefinitivo;
+        public int AnyoIngresoCuerpo { get; set; }
+        public bool DestinoDefinitivo { get; set; }
         public EmpleadoPublico.TipoMedico tipoMedico { get; set; }
         public Profesor.TipoFuncionario tipoFuncionario { get; set; }
-        public string nombreImagen;
+        public string nombreImagen { get; set; }
+
+
+
+
         public ProfesorFuncionario() { 
         
         }

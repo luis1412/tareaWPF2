@@ -1,4 +1,5 @@
 ﻿using Clases2.Clases;
+using ejercicio8DI.Clases;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,7 @@ namespace ejercicio8DI
         private void btnPrimero_Click(object sender, RoutedEventArgs e)
         {
             cargarDatos(listaProfesores[0]);
+            indiceActualProfesor = 0;
         }
 
         private void btnSegundo_Click(object sender, RoutedEventArgs e)
@@ -149,6 +151,7 @@ namespace ejercicio8DI
         private void btnCuarto_Click(object sender, RoutedEventArgs e)
         {
             cargarDatos(listaProfesores[listaProfesores.Count - 1]);
+            indiceActualProfesor = listaProfesores.Count;
         }
 
         private void agrupacion2(object sender, RoutedEventArgs e)
@@ -221,17 +224,17 @@ namespace ejercicio8DI
 
         private void filtro1(object sender, RoutedEventArgs e)
         {
-            var mayores35 = 
+            Auxiliar.mayores35(listaProfesores); 
         }
 
         private void filtro2(object sender, RoutedEventArgs e)
         {
-
+            Auxiliar.filtrarAnoDeIngreso(listaProfesores);
         }
 
         private void filtro3(object sender, RoutedEventArgs e)
         {
-
+            Auxiliar.filtrarAnoDeIngresoEstadoCivil(listaProfesores);
         }
 
         private void filtro4(object sender, RoutedEventArgs e)
