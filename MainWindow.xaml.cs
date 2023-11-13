@@ -154,14 +154,24 @@ namespace ejercicio8DI
             indiceActualProfesor = listaProfesores.Count;
         }
 
+        private void agrupacion1(object sender, RoutedEventArgs e)
+        {
+            Auxiliar.agrupar1(listaProfesores);
+        }
+
+        private void agrupacion3(object sender, RoutedEventArgs e)
+        {
+            Auxiliar.agrupar3(listaProfesores);
+        }
+
         private void agrupacion2(object sender, RoutedEventArgs e)
         {
-
+            Auxiliar.agrupar2(listaProfesores);
         }
 
         private void agrupacion4(object sender, RoutedEventArgs e)
         {
-
+            Auxiliar.agrupar4(listaProfesores);
         }
 
         private void Salir_Click(object sender, RoutedEventArgs e)
@@ -239,18 +249,10 @@ namespace ejercicio8DI
 
         private void filtro4(object sender, RoutedEventArgs e)
         {
-
+            Auxiliar.estaturaSuperio160(listaProfesores);
         }
 
-        private void agrupacion1(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void agrupacion3(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void menuArchivo_Click_1(object sender, RoutedEventArgs e)
         {
