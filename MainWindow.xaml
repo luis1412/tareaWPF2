@@ -81,25 +81,50 @@
             <Image x:Name="imagenProfesor" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         </Grid>
         <Grid x:Name="gridBotones">
-            <Button HorizontalAlignment="Left" Margin="146,286,0,0" VerticalAlignment="Top" Height="31" Width="36"
-                    x:Name="btnPrimero" Click="btnPrimero_Click">
+            <Button HorizontalAlignment="Left" Margin="79,286,0,0" VerticalAlignment="Top" Height="31" Width="36"
+                    x:Name="btnPrimero" Click="btnPrimero_Click" ToolTip="Primero" ToolTipService.ShowOnDisabled="True"> 
                 <DockPanel>
                     <Image x:Name="imgPrimero"></Image>
                 </DockPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="266,286,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnSegundo_Click">
+            <Button HorizontalAlignment="Left" Margin="153,286,0,0" VerticalAlignment="Top" Height="32" Width="38" x:Name="btnSegundo" Click="btnSegundo_Click" ToolTip="Anterior" ToolTipService.ShowOnDisabled="True">
                 <DockPanel>
                     <Image x:Name="imgSegundo"></Image>
                 </DockPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="427,285,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnTercero_Click">
+            <Button x:Name="btnTercero" HorizontalAlignment="Left" Margin="503,288,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="btnTercero_Click" ToolTip="Siguiente" ToolTipService.ShowOnDisabled="True">
                 <DockPanel>
                     <Image x:Name="imgTercero"></Image>
                 </DockPanel>
             </Button>
-            <Button  HorizontalAlignment="Left" Margin="522,284,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnCuarto_Click">
+            <Button x:Name="btnCuarto"  HorizontalAlignment="Left" Margin="585,287,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnCuarto_Click" ToolTip="Ultimo" ToolTipService.ShowOnDisabled="True">
                 <DockPanel>
                     <Image x:Name="imgCuarto"></Image>
+                </DockPanel>
+            </Button>
+            <Button x:Name="btnAnadirUsuario"  HorizontalAlignment="Left" Margin="230,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnAnadir_Click" ToolTip="Añadir Usuario" ToolTipService.ShowOnDisabled="True">
+                <DockPanel>
+                    <Image x:Name="imgAnadir"></Image>
+                </DockPanel>
+            </Button>
+            <Button x:Name="btnActualizarUsuario"  HorizontalAlignment="Left" Margin="270,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnActualizar_Click" ToolTip="Actualizar Usuario" ToolTipService.ShowOnDisabled="True">
+                <DockPanel>
+                    <Image x:Name="imgActualizarUsuario"/>
+                </DockPanel>
+            </Button>
+            <Button x:Name="btnBorrarUsuario"  HorizontalAlignment="Left" Margin="310,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnBorrar_Click" ToolTip="Borrar Usuario" ToolTipService.ShowOnDisabled="True">
+                <DockPanel>
+                    <Image x:Name="imgBorrarUsuario"/>
+                </DockPanel>
+            </Button>
+            <Button x:Name="btnCancelarUsuario"  HorizontalAlignment="Left" Margin="369,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnCancelar_Click" ToolTip="Cancelar" ToolTipService.ShowOnDisabled="True">
+                <DockPanel>
+                    <Image x:Name="imgCancelar"/>
+                </DockPanel>
+            </Button>
+            <Button x:Name="btnGuardarUsuario"  HorizontalAlignment="Left" Margin="409,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnGuardar_Click" ToolTip="Guardar" ToolTipService.ShowOnDisabled="True">
+                <DockPanel>
+                    <Image x:Name="imgGuardar"/>
                 </DockPanel>
             </Button>
         </Grid>

@@ -26,7 +26,7 @@ namespace ejercicio8DI
     {
         List<ProfesorFuncionario> listaProfesores = new List<ProfesorFuncionario>();
         int indiceActualProfesor = 0;
-        const string rutaFija = "..\\..\\..\\imagenes\\";
+        const string rutaFija = "..\\..\\..\\imagenes\\iconos\\";
         public MainWindow()
         {
             InitializeComponent();
@@ -39,12 +39,17 @@ namespace ejercicio8DI
             menuAgrupacion.IsEnabled = false;
 
           
-
+            //Imagenes flechas
             imgPrimero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaIzquierda.png") as ImageSource;
             imgSegundo.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaIzquierda.png") as ImageSource;
             imgTercero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaDerecha.png") as ImageSource;
             imgCuarto.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaDerecha.png") as ImageSource;
-            
+           //Imagenes interaccion usuarios y profesores
+            imgActualizarUsuario.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "actualizarUsuario.png") as ImageSource;
+            imgAnadir.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "agregarUsuario.png") as ImageSource;
+            imgBorrarUsuario.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "borrarUsuario.png") as ImageSource;
+            imgCancelar.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "eliminar.png") as ImageSource;
+            imgGuardar.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "guardar.png") as ImageSource;
         }
 
         private void menuArchivo_Click(object sender, RoutedEventArgs e)
@@ -84,7 +89,7 @@ namespace ejercicio8DI
             else { 
                 seguroMedico.SelectedIndex = 1;
             }
-            string rutaCompleta = rutaFija + profesorActual.rutaFoto;
+            string rutaCompleta = "..\\..\\..\\imagenes\\" + profesorActual.rutaFoto;
             imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString(rutaCompleta) as ImageSource;
 
 
@@ -137,6 +142,7 @@ namespace ejercicio8DI
                 indiceActualProfesor--;
                 cargarDatos(listaProfesores[indiceActualProfesor]);
             }
+
         }
 
         private void btnTercero_Click(object sender, RoutedEventArgs e)
@@ -146,6 +152,7 @@ namespace ejercicio8DI
                 indiceActualProfesor++;
                 cargarDatos(listaProfesores[indiceActualProfesor]);
             }
+            
         }
 
         private void btnCuarto_Click(object sender, RoutedEventArgs e)
@@ -259,5 +266,29 @@ namespace ejercicio8DI
 
         }
 
+        private void btnAnadir_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBorrar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
