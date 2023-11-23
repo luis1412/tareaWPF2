@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Clases2.Clases.EmpleadoPublico;
+using static Clases2.Clases.Profesor;
 
 namespace ejercicio8DI
 {
@@ -60,7 +62,7 @@ namespace ejercicio8DI
         private void cargarDatos(ProfesorFuncionario profesorActual) {
             tbNombre.Text = profesorActual.Nombre;
             tbApellidos.Text = profesorActual.apellidos;
-            tbEmail.Text = profesorActual.email;
+            tbEmail.Text = profesorActual.Id;
             destino.IsChecked = profesorActual.DestinoDefinitivo;
             for (int i = 22; i < 70; i++)
             {
@@ -115,7 +117,31 @@ namespace ejercicio8DI
                     var lineas = File.ReadLines(openFileDialog.FileName);
                 
                     foreach (string line in lineas) {
-                        listaProfesores.Add(new ProfesorFuncionario(line));
+                        string[] texto = line.Split(";");
+                        string Nombre = texto[0];
+                        string apellidos = texto[1];
+                        int edad = Int32.Parse(texto[2]);
+                        string Id = texto[3];
+                        string Materia = texto[4];
+                        TipoFuncionario tipoFuncionario = (TipoFuncionario)Enum.Parse(typeof(TipoFuncionario), texto[5]);
+                        int AnyoIngresoCuerpo = Int32.Parse(texto[6]);
+                        bool DestinoDefinitivo = (texto[7].Equals("true") ? true : false);
+                        EmpleadoPublico.TipoMedico tipoMedico = (EmpleadoPublico.TipoMedico)Enum.Parse(typeof(EmpleadoPublico.TipoMedico), texto[8]);
+                        string nombreImagen = texto[9];
+                        string rutaFoto = "profesores\\" + nombreImagen;
+                        ProfesorFuncionario p = new ProfesorFuncionario();
+                        p.rutaFoto = rutaFoto;
+                        p.edad = edad;
+                        p.Materia = Materia;
+                        p.apellidos = apellidos;
+                        p.Id = Id;
+                        p.tipoFuncionario = tipoFuncionario;
+                        p.AnyoIngresoCuerpo = AnyoIngresoCuerpo;
+                        p.DestinoDefinitivo = DestinoDefinitivo;
+                        p.nombreImagen = nombreImagen;
+                        p.tipoMedico = tipoMedico;
+                        p.Nombre = Nombre;
+                        listaProfesores.Add(p);
                     }
                     cargarDatos(listaProfesores[0]);
                     gridBotones.IsEnabled = true;

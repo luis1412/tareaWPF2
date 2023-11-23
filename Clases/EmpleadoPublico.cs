@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clases2.Clases
 {
-    internal interface EmpleadoPublico
+    public interface EmpleadoPublico
     {
 
         public enum TipoMedico : uint

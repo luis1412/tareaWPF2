@@ -14,8 +14,9 @@ namespace Clases2.Clases
         public string Nombre { get; set; }
         public string apellidos { get; set; }
         public int edad { get; set; }
-        public string email { get; set; }
+        public string Id { get; set; }
 
+       
         public Persona() { }
 
         public Persona(string nombre, string apellidos, int edad, string rutaFoto)
@@ -23,10 +24,10 @@ namespace Clases2.Clases
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.edad = edad;
-            this.email = GenerarEmail();
+            this.Id = GenerarEmail();
             this.rutaFoto = "profesores\\" + rutaFoto;
         }
-
+       
         public virtual String GenerarEmail()
         {
             string[] apellidos = this.apellidos.Split(' ');
@@ -44,7 +45,7 @@ namespace Clases2.Clases
 
         public override string ToString()
         {
-            return $"{nombre.PadRight(5)} \t {apellidos.PadRight(5)} \t {email.PadRight(15)} \t {edad}";
+            return $"{nombre.PadRight(5)} \t {apellidos.PadRight(5)} \t {Id.PadRight(15)} \t {edad}";
         }
 
         public override bool Equals(object? obj)

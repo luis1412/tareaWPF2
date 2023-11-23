@@ -42,7 +42,7 @@ namespace ejercicio8DI.Clases
         }
         public static void estaturaSuperio160(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.email), (pe => pe.Email), (pf, pe) => new
+            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.Email), (pf, pe) => new
             {
                 pf.Nombre,
                 pf.apellidos,
@@ -55,7 +55,7 @@ namespace ejercicio8DI.Clases
         }
         public static void agrupar1(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.email, (pe, pf) => new { pe, pf })
+            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.Id, (pe, pf) => new { pe, pf })
                                                 .GroupBy(final => final.pe.ECivil)
                                                 .Select(a => new
                                                 {
@@ -80,7 +80,7 @@ namespace ejercicio8DI.Clases
         
         public static void agrupar2(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.email, (pe, pf) => new { pe, pf })
+            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.Id, (pe, pf) => new { pe, pf })
                                                 .GroupBy(final => final.pe.ECivil)
                                                 .Select(a => new
                                                 {
@@ -105,7 +105,7 @@ namespace ejercicio8DI.Clases
         {
             var consulta = from pf in profesorFuncionarios
                            orderby pf.edad
-                           group new { Nombre = pf.Nombre, Apellidos = pf.apellidos, Email = pf.email } by pf.edad into personasAgrupadas
+                           group new { Nombre = pf.Nombre, Apellidos = pf.apellidos, Email = pf.Id } by pf.edad into personasAgrupadas
                            select new
                            {
                                Key = personasAgrupadas.Key,
@@ -129,7 +129,7 @@ namespace ejercicio8DI.Clases
         
         public static void agrupar4(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = from pf in profesorFuncionarios join pe in profesoresExtendidos on pf.email equals pe.Email
+            var consulta = from pf in profesorFuncionarios join pe in profesoresExtendidos on pf.Id equals pe.Email
                            where pf.edad >= 40
                            orderby pe.Peso
                            orderby pf.apellidos
@@ -157,7 +157,7 @@ namespace ejercicio8DI.Clases
 
         public static void filtrarAnoDeIngresoEstadoCivil(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.email), (pe => pe.Email), ((pf, pe) => new
+            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.Email), ((pf, pe) => new
             {
                 pf.Nombre,
                 pf.apellidos,

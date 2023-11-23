@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ejercicio8DI.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,9 @@ namespace Clases2.Clases
         public Profesor.TipoFuncionario tipoFuncionario { get; set; }
         public string nombreImagen { get; set; }
 
+       public ProfesorExtendido profesorExtendido { get; set; }
 
-
-
+        /*
         public ProfesorFuncionario() { 
         
         }
@@ -27,7 +28,7 @@ namespace Clases2.Clases
             base.Nombre = texto[0];
             base.apellidos = texto[1];
             base.edad = Int32.Parse(texto[2]);
-            base.email = texto[3];
+            base.Id = texto[3];
             base.Materia = texto[4];
             tipoFuncionario = (TipoFuncionario)Enum.Parse(typeof(TipoFuncionario), texto[5]);
             AnyoIngresoCuerpo = Int32.Parse(texto[6]);
@@ -51,7 +52,7 @@ namespace Clases2.Clases
             this.tipoMedico = tipoMedico;
             this.tipoFuncionario = tipoProfesor;
         }
-
+        */
 
         public static string cambiarBoolPorSi(bool DestinoDefinitivo) {
 

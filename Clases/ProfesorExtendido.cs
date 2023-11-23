@@ -8,6 +8,10 @@ namespace ejercicio8DI.Clases
 {
     class ProfesorExtendido
     {
+        public int Id { get; set; }
+
+        public string profesorFuncionarioId { get; set; }
+
         public enum EstadoCivil
         {
             Soltero,
@@ -17,7 +21,7 @@ namespace ejercicio8DI.Clases
         }
 
         // Clase ProfesorExtendido
-
+        /*
         public ProfesorExtendido(EstadoCivil estadoCivil, string email, int peso, int estatura)
         {
             ECivil = estadoCivil;
@@ -27,7 +31,7 @@ namespace ejercicio8DI.Clases
         }
 
         public ProfesorExtendido() { }
-
+        */
         public EstadoCivil ECivil { get; set; }
         public string Email { get; set; }
         public int Peso { get; set; }
