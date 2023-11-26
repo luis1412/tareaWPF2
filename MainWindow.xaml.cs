@@ -1,10 +1,12 @@
 ﻿using Clases2.Clases;
 using ejercicio8DI.Clases;
+using ejercicio8DI.Contextos;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +29,7 @@ namespace ejercicio8DI
     public partial class MainWindow : Window
     {
         List<ProfesorFuncionario> listaProfesores = new List<ProfesorFuncionario>();
+        List<ProfesorExtendido> listaProfesoresExtendidos = new List<ProfesorExtendido>();
         int indiceActualProfesor = 0;
         const string rutaFija = "..\\..\\..\\imagenes\\iconos\\";
         public MainWindow()
@@ -98,8 +101,110 @@ namespace ejercicio8DI
         }
 
 
+
+        public void anadirRegistrosLista() {
+            using (Contexto context = new Contexto()) {
+              listaProfesores = context.ProfesoresFuncionarios.ToList();
+                listaProfesoresExtendidos = context.ProfesoresExtendidos.ToList();
+                cargarDatos(listaProfesores[0]);
+            }
+        
+        }
+
+
+
+        public void activarCamposNuevo(bool activado) {
+            btnAnadirUsuario.IsEnabled = activado;
+            btnActualizarUsuario.IsEnabled = activado;
+            btnAnadirUsuario.IsEnabled = activado;
+            btnCancelarUsuario.IsEnabled = activado;
+            btnBorrarUsuario.IsEnabled = activado;
+            btnGuardarUsuario.IsEnabled = activado;
+
+        }
+
+
+        public void borrarCampos() {
+            tbNombre.Text = "";
+            tbApellidos.Text = "";
+            tbEmail.Text = "";
+            destino.IsChecked = false;
+            cbEdad.Text = "";
+            tbIngreso.Text = "";
+        }
+
+
+        public void cargarCombo() {
+            cbEdad.Items.Clear();
+            for (int i = 22; i < 70; i++)
+            {
+                cbEdad.Items.Add(i);
+            }
+        }
+
+        private void Nuevo_Click(object sender, RoutedEventArgs e)
+        {
+            activarControles();
+            activarDesactivarCamposText(false);
+            borrarCampos();
+            activarCamposNuevo(true);
+            cargarCombo();
+        }
+
+        public void activarDesactivarCamposText(bool isEnabled) {
+            tbNombre.IsReadOnly = isEnabled;
+            tbApellidos.IsReadOnly = isEnabled;
+            tbEmail.IsReadOnly = false;
+            destino.IsEnabled = !isEnabled;
+            cbEdad.IsReadOnly = isEnabled;
+            tbIngreso.IsReadOnly = isEnabled;
+            rbPracticas.IsEnabled = !isEnabled;
+            rbCarrera.IsEnabled = !isEnabled;
+            seguroMedico.IsEnabled = !isEnabled;
+            lblRutaFoto.Visibility = Visibility.Visible;
+            imagenProfesor.Visibility = Visibility.Hidden;
+        }
+
+
+        public bool comprobarCampos() {
+            int resultado;
+
+            if (tbNombre.Text.Length! > 0)
+            {
+                MessageBox.Show("El nombre no puede estar vacio");
+                return false;
+            }
+            else if (tbApellidos.Text.Length! > 0)
+            {
+                MessageBox.Show("El apellido no puede estar vacio");
+                return false;
+            }
+            else if (tbIngreso.Text.Length <= 0 || !Int32.TryParse(tbIngreso.Text, out resultado))
+            {
+                MessageBox.Show("El año de ingreso no puede estar vacio, o no lo has introducido con numeros enteros");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
         private void Abrir_Click(object sender, RoutedEventArgs e)
         {
+            activarCamposNuevo(false);
+            if (comprobarRegistroBD())
+            {
+                anadirRegistrosLista();
+                activarControles();
+            }
+            else {
+                seleccionarArchivoYCargar();
+            }
+            
+        }
+
+
+        public void seleccionarArchivoYCargar() {
             OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
 
             //Nos situamos en el directorio desde el que se ejecuta la aplicación
@@ -115,8 +220,9 @@ namespace ejercicio8DI
                 {   //Obtengo una colección de líneas (en cada una están los datos
                     //de un profesor), luego las iré recorriendo con un foreach
                     var lineas = File.ReadLines(openFileDialog.FileName);
-                
-                    foreach (string line in lineas) {
+
+                    foreach (string line in lineas)
+                    {
                         string[] texto = line.Split(";");
                         string Nombre = texto[0];
                         string apellidos = texto[1];
@@ -144,10 +250,8 @@ namespace ejercicio8DI
                         listaProfesores.Add(p);
                     }
                     cargarDatos(listaProfesores[0]);
-                    gridBotones.IsEnabled = true;
-                    gridContenido.IsEnabled = true;
-                    menuFiltros.IsEnabled = true;
-                    menuAgrupacion.IsEnabled = true;
+                    activarControles();
+                    anadirFicheroABD(listaProfesores);
                 }
                 catch (Exception ex)
                 {
@@ -155,6 +259,44 @@ namespace ejercicio8DI
                 }
             }
         }
+
+        public void activarControles() {
+            gridBotones.IsEnabled = true;
+            gridContenido.IsEnabled = true;
+            menuFiltros.IsEnabled = true;
+            menuAgrupacion.IsEnabled = true;
+        }
+
+        public void anadirFicheroABD(List<ProfesorFuncionario> profesorFuncionarios, List<ProfesorExtendido> profesorExtendidos = null) {
+            using (Contexto context = new Contexto())
+            {
+                context.ProfesoresFuncionarios.AddRange(profesorFuncionarios);
+                if (profesorExtendidos != null)
+                {
+                    context.ProfesoresExtendidos.AddRange(profesorExtendidos);
+                }
+                context.SaveChanges();
+            }
+
+
+        }
+
+
+        public bool comprobarRegistroBD() {
+            var context = new Contexto();
+
+            if (!context.ProfesoresExtendidos.Any() && !context.ProfesoresFuncionarios.Any())
+            {
+                MessageBox.Show("No hay nigun registro en la base de datos");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+             
+        }
+
         private void btnPrimero_Click(object sender, RoutedEventArgs e)
         {
             cargarDatos(listaProfesores[0]);
@@ -309,12 +451,14 @@ namespace ejercicio8DI
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Quiere continuar", "Confirmacion", MessageBoxButton.OKCancel);
         }
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+ 
     }
 }

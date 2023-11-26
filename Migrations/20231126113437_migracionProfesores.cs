@@ -4,7 +4,7 @@
 
 namespace ejercicio8DI.Migrations
 {
-    public partial class creandoprofesores : Migration
+    public partial class migracionProfesores : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

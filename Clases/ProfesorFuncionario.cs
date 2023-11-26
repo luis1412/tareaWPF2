@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clases2.Clases
 {
-    internal class ProfesorFuncionario : Profesor, EmpleadoPublico
+    public class ProfesorFuncionario : Profesor, EmpleadoPublico
     {
         public int AnyoIngresoCuerpo { get; set; }
         public bool DestinoDefinitivo { get; set; }

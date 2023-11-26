@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clases2.Clases
 {
-    abstract class Profesor : Persona
+   public abstract class Profesor : Persona
     {
         public string Materia { get; set; }
         public TipoFuncionario TipoProfesor { get; set; }

@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Clases2.Clases;
 
 namespace ejercicio8DI.Clases
 {
-    class ProfesorExtendido
+   public class ProfesorExtendido
     {
         public int Id { get; set; }
 
         public string profesorFuncionarioId { get; set; }
+
+        public ProfesorFuncionario ProfesorFuncionario { get; set; }
+
 
         public enum EstadoCivil
         {

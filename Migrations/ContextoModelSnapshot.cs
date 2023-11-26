@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ejercicio8DI.Contexto;
+using ejercicio8DI.Contextos;
 
 #nullable disable
 
@@ -104,11 +104,13 @@ namespace ejercicio8DI.Migrations
 
             modelBuilder.Entity("ejercicio8DI.Clases.ProfesorExtendido", b =>
                 {
-                    b.HasOne("Clases2.Clases.ProfesorFuncionario", null)
+                    b.HasOne("Clases2.Clases.ProfesorFuncionario", "ProfesorFuncionario")
                         .WithOne("profesorExtendido")
                         .HasForeignKey("ejercicio8DI.Clases.ProfesorExtendido", "profesorFuncionarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ProfesorFuncionario");
                 });
 
             modelBuilder.Entity("Clases2.Clases.ProfesorFuncionario", b =>

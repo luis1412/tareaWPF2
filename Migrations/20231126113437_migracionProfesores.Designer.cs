@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ejercicio8DI.Contexto;
+using ejercicio8DI.Contextos;
 
 #nullable disable
 
 namespace ejercicio8DI.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20231123124716_creando-profesores")]
-    partial class creandoprofesores
+    [Migration("20231126113437_migracionProfesores")]
+    partial class migracionProfesores
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,11 +106,13 @@ namespace ejercicio8DI.Migrations
 
             modelBuilder.Entity("ejercicio8DI.Clases.ProfesorExtendido", b =>
                 {
-                    b.HasOne("Clases2.Clases.ProfesorFuncionario", null)
+                    b.HasOne("Clases2.Clases.ProfesorFuncionario", "ProfesorFuncionario")
                         .WithOne("profesorExtendido")
                         .HasForeignKey("ejercicio8DI.Clases.ProfesorExtendido", "profesorFuncionarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ProfesorFuncionario");
                 });
 
             modelBuilder.Entity("Clases2.Clases.ProfesorFuncionario", b =>

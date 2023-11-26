@@ -22,6 +22,8 @@
                             <Image x:Name="menuSalir"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="Nuevo" Header="Nuevo" Click="Nuevo_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="menuFuente" Header="_Fuente">
                     <MenuItem x:Name="negritaC" Header="_Negrita" IsCheckable="True"
@@ -78,11 +80,20 @@
             <RadioButton x:Name="rbPracticas" IsEnabled="False" Content="En Prácticas" HorizontalAlignment="Left" Margin="283,196,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
             <RadioButton x:Name="rbCarrera" IsChecked="False" Content="De Carrera" HorizontalAlignment="Left" Margin="283,216,0,0" VerticalAlignment="Top" GroupName="tipoF" Grid.Column="1"/>
             <ListBox x:Name="seguroMedico" IsEnabled="False" Margin="474,165,43,181" Grid.Column="1"/>
+            <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="103" Height="33" Margin="480,59,0,0" >Ruta Foto
+            </Label>
+            <TextBlock Name="lblRutaFoto" TextWrapping="Wrap" FontStyle="Normal" FontStretch="Normal" FontFamily="Arial Narrow" FontSize="13" Visibility="Visible" Margin="544,59,10,320" Grid.Column="1">
+                </TextBlock>
+            
+            <TextBox x:Name="txtRutaFoto" Grid.Column="6"  Grid.Row="1" 
+HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="90"
+              FontFamily="Arial" FontStyle="Italic" Visibility="Hidden"/>
+
             <Image x:Name="imagenProfesor" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         </Grid>
         <Grid x:Name="gridBotones">
             <Button HorizontalAlignment="Left" Margin="79,286,0,0" VerticalAlignment="Top" Height="31" Width="36"
-                    x:Name="btnPrimero" Click="btnPrimero_Click" ToolTip="Primero" ToolTipService.ShowOnDisabled="True"> 
+                    x:Name="btnPrimero" Click="btnPrimero_Click" ToolTip="Primero" ToolTipService.ShowOnDisabled="True">
                 <DockPanel>
                     <Image x:Name="imgPrimero"></Image>
                 </DockPanel>
