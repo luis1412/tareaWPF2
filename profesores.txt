@@ -1,0 +1,8 @@
+Luis;Herrador;22;lhercru721@g.educaand.es;Matematicas;DeCarrera;2006;true;SS;luis.png
+Samuel;Dominguez;22;sdomnic@g.educaand.es;Tecnologia;EnPracticas;2023;false;MUFACE;samuel.png
+María;García;28;mgarcia123@g.educaand.es;Física;DeCarrera;2018;true;SS;maria.png
+Carlos;Martínez;31;cmartinez@g.educaand.es;Historia;EnPracticas;2022;false;MUFACE;carlos.png
+Laura;Pérez;25;lperez@g.educaand.es;Biología;DeCarrera;2019;true;SS;laura.png
+Juan;Rodríguez;29;jrodriguez@g.educaand.es;Química;EnPracticas;2021;false;MUFACE;juan.png
+Ana;Sánchez;45;asanchez@g.educaand.es;Literatura;DeCarrera;2020;true;SS;ana.png
+Pedro;López;67;plopez@g.educaand.es;Inglés;EnPracticas;2024;false;MUFACE;pedro.png
