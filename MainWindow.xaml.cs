@@ -109,7 +109,14 @@ namespace ejercicio8DI
             }
             string rutaCompleta = "..\\..\\..\\imagenes\\" + profesorActual.rutaFoto;
 
-            // imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString(rutaCompleta) as ImageSource;
+            try
+            {
+                imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString(rutaCompleta) as ImageSource;
+
+            }
+            catch (Exception e) {
+                imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString("..\\..\\..\\imagenes\\profesores\\nada.png") as ImageSource;
+            }
 
 
         }
@@ -230,7 +237,7 @@ namespace ejercicio8DI
         private void Abrir_Click(object sender, RoutedEventArgs e)
         {
             activarFlechas(true);
-
+            imagenProfesor.IsEnabled = true;
 
             if (comprobarRegistroBD())
             {
@@ -276,7 +283,7 @@ namespace ejercicio8DI
                         bool DestinoDefinitivo = (texto[7].Equals("true") ? true : false);
                         EmpleadoPublico.TipoMedico tipoMedico = (EmpleadoPublico.TipoMedico)Enum.Parse(typeof(EmpleadoPublico.TipoMedico), texto[8]);
                         string nombreImagen = texto[9];
-                        string rutaFoto = "profesores\\" + nombreImagen;
+                         string rutaFoto = "profesores\\" + nombreImagen;
                         ProfesorFuncionario p = new ProfesorFuncionario();
                         p.rutaFoto = rutaFoto;
                         p.edad = edad;
@@ -626,7 +633,7 @@ namespace ejercicio8DI
                 p.Materia = "Sin Materia";
 
                 context.ProfesoresFuncionarios.Update(p);
-                    context.SaveChanges();
+                context.SaveChanges();
                 }
 
         }
@@ -637,11 +644,15 @@ namespace ejercicio8DI
                 if (anadirOActualizar)
                 {
                     guardarUsuarioNuevo();
-                }
-                else {
-                    actualizarUsuario();
-                }
-            }
+                    borrarCampos();
 
+            }
+            else {
+                    actualizarUsuario();
+
+            }
+            btnGuardarUsuario.IsEnabled = false;
         }
+
+    }
 }
