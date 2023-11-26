@@ -22,8 +22,6 @@
                             <Image x:Name="menuSalir"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <Separator/>
-                    <MenuItem x:Name="Nuevo" Header="Nuevo" Click="Nuevo_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="menuFuente" Header="_Fuente">
                     <MenuItem x:Name="negritaC" Header="_Negrita" IsCheckable="True"
@@ -91,6 +89,11 @@ HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Ce
 
             <Image x:Name="imagenProfesor" HorizontalAlignment="Left" Height="100" Margin="456,23,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         </Grid>
+        <Button x:Name="btnAnadirUsuario" IsEnabled="True"  HorizontalAlignment="Left" Margin="230,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnAnadir_Click" ToolTip="Añadir Usuario" ToolTipService.ShowOnDisabled="True">
+            <DockPanel>
+                <Image x:Name="imgAnadir"></Image>
+            </DockPanel>
+        </Button>
         <Grid x:Name="gridBotones">
             <Button HorizontalAlignment="Left" Margin="79,286,0,0" VerticalAlignment="Top" Height="31" Width="36"
                     x:Name="btnPrimero" Click="btnPrimero_Click" ToolTip="Primero" ToolTipService.ShowOnDisabled="True">
@@ -113,11 +116,7 @@ HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Ce
                     <Image x:Name="imgCuarto"></Image>
                 </DockPanel>
             </Button>
-            <Button x:Name="btnAnadirUsuario"  HorizontalAlignment="Left" Margin="230,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnAnadir_Click" ToolTip="Añadir Usuario" ToolTipService.ShowOnDisabled="True">
-                <DockPanel>
-                    <Image x:Name="imgAnadir"></Image>
-                </DockPanel>
-            </Button>
+           
             <Button x:Name="btnActualizarUsuario"  HorizontalAlignment="Left" Margin="270,286,0,0" VerticalAlignment="Top" Height="36" Width="40" Click="btnActualizar_Click" ToolTip="Actualizar Usuario" ToolTipService.ShowOnDisabled="True">
                 <DockPanel>
                     <Image x:Name="imgActualizarUsuario"/>
