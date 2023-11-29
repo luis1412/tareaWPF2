@@ -4,7 +4,7 @@
 
 namespace ejercicio8DI.Migrations
 {
-    public partial class migracionProfesores : Migration
+    public partial class migracion1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,7 +38,6 @@ namespace ejercicio8DI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     profesorFuncionarioId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ECivil = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Peso = table.Column<int>(type: "int", nullable: false),
                     Estatura = table.Column<int>(type: "int", nullable: false)
                 },

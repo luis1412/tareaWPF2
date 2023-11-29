@@ -11,8 +11,8 @@ using ejercicio8DI.Contextos;
 namespace ejercicio8DI.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20231126113437_migracionProfesores")]
-    partial class migracionProfesores
+    [Migration("20231129190844_migracion1")]
+    partial class migracion1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,10 +81,6 @@ namespace ejercicio8DI.Migrations
 
                     b.Property<int>("ECivil")
                         .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Estatura")
                         .HasColumnType("int");

@@ -1,4 +1,5 @@
 ﻿using Clases2.Clases;
+using ejercicio8DI.Contextos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace ejercicio8DI.Clases
         }
         public static void estaturaSuperio160(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.Email), (pf, pe) => new
+            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.profesorFuncionarioId), (pf, pe) => new
             {
                 pf.Nombre,
                 pf.apellidos,
@@ -55,7 +56,7 @@ namespace ejercicio8DI.Clases
         }
         public static void agrupar1(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.Id, (pe, pf) => new { pe, pf })
+            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.profesorFuncionarioId, pf => pf.Id, (pe, pf) => new { pe, pf })
                                                 .GroupBy(final => final.pe.ECivil)
                                                 .Select(a => new
                                                 {
@@ -69,7 +70,7 @@ namespace ejercicio8DI.Clases
 
                 foreach (var elemento in grupo.Elementos)
                 {
-                    final += ($" Nombre: {elemento.pf.Nombre} \n Email: {elemento.pe.Email} \n Edad: {elemento.pf.edad}\n Peso: {elemento.pe.Peso} \n Estatura: {elemento.pe.Estatura} \n");
+                    final += ($" Nombre: {elemento.pf.Nombre} \n profesorFuncionarioId: {elemento.pe.profesorFuncionarioId} \n Edad: {elemento.pf.edad}\n Peso: {elemento.pe.Peso} \n Estatura: {elemento.pe.Estatura} \n");
                 }
                 final += "\n";
             }
@@ -80,7 +81,7 @@ namespace ejercicio8DI.Clases
         
         public static void agrupar2(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.Email, pf => pf.Id, (pe, pf) => new { pe, pf })
+            var consulta = profesoresExtendidos.Join(profesorFuncionarios, pe => pe.profesorFuncionarioId, pf => pf.Id, (pe, pf) => new { pe, pf })
                                                 .GroupBy(final => final.pe.ECivil)
                                                 .Select(a => new
                                                 {
@@ -119,7 +120,7 @@ namespace ejercicio8DI.Clases
 
                 foreach (var elemento in grupo.Valores)
                 {
-                    final += ($" Nombre: {elemento.Nombre} \n Email: {elemento.Apellidos} \n Edad: {elemento.Email}\n ");
+                    final += ($" Nombre: {elemento.Nombre} \n profesorFuncionarioId: {elemento.Apellidos} \n Edad: {elemento.Email}\n ");
                 }
                 final += "\n";
             }
@@ -129,7 +130,7 @@ namespace ejercicio8DI.Clases
         
         public static void agrupar4(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = from pf in profesorFuncionarios join pe in profesoresExtendidos on pf.Id equals pe.Email
+            var consulta = from pf in profesorFuncionarios join pe in profesoresExtendidos on pf.Id equals pe.profesorFuncionarioId
                            where pf.edad >= 40
                            orderby pe.Peso
                            orderby pf.apellidos
@@ -147,7 +148,7 @@ namespace ejercicio8DI.Clases
 
                 foreach (var elemento in grupo.Valores)
                 {
-                    final += ($" Nombre: {elemento.Nombre} \n Email: {elemento.Apellidos} \n Seguro: {elemento.Seguro}\n Peso: {elemento.Peso}");
+                    final += ($" Nombre: {elemento.Nombre} \n profesorFuncionarioId: {elemento.Apellidos} \n Seguro: {elemento.Seguro}\n Peso: {elemento.Peso}");
                 }
                 final += "\n";
             }
@@ -157,7 +158,7 @@ namespace ejercicio8DI.Clases
 
         public static void filtrarAnoDeIngresoEstadoCivil(List<ProfesorFuncionario> profesorFuncionarios)
         {
-            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.Email), ((pf, pe) => new
+            var consulta = profesorFuncionarios.Join(profesoresExtendidos, (pf => pf.Id), (pe => pe.profesorFuncionarioId), ((pf, pe) => new
             {
                 pf.Nombre,
                 pf.apellidos,
@@ -190,5 +191,43 @@ namespace ejercicio8DI.Clases
 
         }
 
+        public static void insercionBaseDatos<T>(List<T> lista = null, T objeto = null) where T : class
+        {
+            using (Contexto context = new Contexto())
+            {
+                if (lista != null)
+                {
+                    context.AddRange(lista);
+                }
+                else if (objeto != null)
+                {
+                    context.Add(objeto);
+                }
+                context.SaveChanges();
+            }
+        }    
+        public static void actualizarBaseDatos<T>(List<T> lista = null, T objeto = null) where T : class
+        {
+            using (Contexto context = new Contexto())
+            {
+                if (lista != null)
+                {
+                    context.UpdateRange(lista);
+                }
+                else if (objeto != null)
+                {
+                    context.Update(objeto);
+                }
+                context.SaveChanges();
+            }
+        }
     }
+
+
+
+
+
+
+
+
 }

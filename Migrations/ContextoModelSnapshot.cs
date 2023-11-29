@@ -80,10 +80,6 @@ namespace ejercicio8DI.Migrations
                     b.Property<int>("ECivil")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Estatura")
                         .HasColumnType("int");
 

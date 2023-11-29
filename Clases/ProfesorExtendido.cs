@@ -11,7 +11,7 @@ namespace ejercicio8DI.Clases
     {
         public int Id { get; set; }
 
-        public string profesorFuncionarioId { get; set; }
+       public string profesorFuncionarioId { get; set; }
 
         public ProfesorFuncionario ProfesorFuncionario { get; set; }
 
@@ -37,9 +37,13 @@ namespace ejercicio8DI.Clases
         public ProfesorExtendido() { }
         */
         public EstadoCivil ECivil { get; set; }
-        public string Email { get; set; }
         public int Peso { get; set; }
         public int Estatura { get; set; }
+
+
+        
+
+
 
         public static List<ProfesorExtendido> GetProfesE()
         {
@@ -47,15 +51,15 @@ namespace ejercicio8DI.Clases
 
             listaProfesores.Add(new ProfesorExtendido() {
                 ECivil = EstadoCivil.Soltero,
-                Email = "lhercru721@g.educaand.es",
+                profesorFuncionarioId = "lhercru721@g.educaand.es",
                 Estatura = 185,
-                Peso = 65
+                Peso = 65,
             });
 
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Soltero,
-                Email = "sdomnic@g.educaand.es",
+                profesorFuncionarioId = "sdomnic@g.educaand.es",
                 Estatura = 170,
                 Peso = 70
             });
@@ -63,7 +67,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Casado,
-                Email = "mgarcia123@g.educaand.es",
+                profesorFuncionarioId = "mgarcia123@g.educaand.es",
                 Estatura = 175,
                 Peso = 68
             });
@@ -71,7 +75,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Viudo,
-                Email = "cmartinez@g.educaand.es",
+                profesorFuncionarioId = "cmartinez@g.educaand.es",
                 Estatura = 180,
                 Peso = 75
             });
@@ -79,7 +83,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Soltero,
-                Email = "lperez@g.educaand.es",
+                profesorFuncionarioId = "lperez@g.educaand.es",
                 Estatura = 170,
                 Peso = 60
             });
@@ -87,7 +91,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Casado,
-                Email = "jrodriguez@g.educaand.es",
+                profesorFuncionarioId = "jrodriguez@g.educaand.es",
                 Estatura = 175,
                 Peso = 72
             });
@@ -95,7 +99,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Divorciado,
-                Email = "asanchez@g.educaand.es",
+                profesorFuncionarioId = "asanchez@g.educaand.es",
                 Estatura = 160,
                 Peso = 65
             });
@@ -103,7 +107,7 @@ namespace ejercicio8DI.Clases
             listaProfesores.Add(new ProfesorExtendido()
             {
                 ECivil = EstadoCivil.Viudo,
-                Email = "plopez@g.educaand.es",
+                profesorFuncionarioId = "plopez@g.educaand.es",
                 Estatura = 190,
                 Peso = 80
             });

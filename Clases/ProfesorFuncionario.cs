@@ -1,4 +1,5 @@
 ﻿using ejercicio8DI.Clases;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,7 +98,7 @@ namespace Clases2.Clases
             return anos / 3;
         }
 
-
+        
 
 
 

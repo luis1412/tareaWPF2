@@ -51,6 +51,9 @@ namespace ejercicio8DI
             menuAgrupacion.IsEnabled = false;
 
 
+            tbNombre.TextChanged += tbNombre_TextChanged;
+            tbApellidos.LostFocus += txtLostFocus;
+
             //Imagenes flechas
             imgPrimero.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaIzquierda.png") as ImageSource;
             imgSegundo.Source = (new ImageSourceConverter()).ConvertFromString(rutaFija + "flechaGordaIzquierda.png") as ImageSource;
@@ -66,6 +69,7 @@ namespace ejercicio8DI
 
 
             btnAnadirUsuario.IsEnabled = true;
+
         }
 
         private void menuArchivo_Click(object sender, RoutedEventArgs e)
@@ -118,7 +122,7 @@ namespace ejercicio8DI
                 imagenProfesor.Source = (new ImageSourceConverter()).ConvertFromString("..\\..\\..\\imagenes\\profesores\\nada.png") as ImageSource;
             }
 
-
+           
         }
 
 
@@ -243,6 +247,8 @@ namespace ejercicio8DI
             {
                 anadirRegistrosLista();
                 activarControles(true);
+                btnPrimero.IsEnabled = false;
+                btnSegundo.IsEnabled = false;
             }
             else
             {
@@ -300,7 +306,8 @@ namespace ejercicio8DI
                     }
                     cargarDatos(listaProfesores[0]);
                     activarControles(true);
-                    anadirFicheroABD(listaProfesores);
+                    Auxiliar.insercionBaseDatos(listaProfesores, null);
+                    Auxiliar.insercionBaseDatos(ProfesorExtendido.GetProfesE(),null);
                 }
                 catch (Exception ex)
                 {
@@ -354,6 +361,14 @@ namespace ejercicio8DI
         {
             cargarDatos(listaProfesores[0]);
             indiceActualProfesor = 0;
+            btnPrimero.IsEnabled = false;
+            if (indiceActualProfesor == 0)
+            {
+                btnPrimero.IsEnabled = false;
+                btnSegundo.IsEnabled = false;
+            }
+            btnCuarto.IsEnabled = true;
+            btnTercero.IsEnabled = true;
         }
 
         private void btnSegundo_Click(object sender, RoutedEventArgs e)
@@ -363,6 +378,13 @@ namespace ejercicio8DI
                 indiceActualProfesor--;
                 cargarDatos(listaProfesores[indiceActualProfesor]);
             }
+            else if (indiceActualProfesor == 0)
+            {
+                btnPrimero.IsEnabled = false;
+                btnSegundo.IsEnabled = false;
+            }
+            btnCuarto.IsEnabled = true;
+            btnTercero.IsEnabled = true;
 
         }
 
@@ -373,13 +395,27 @@ namespace ejercicio8DI
                 indiceActualProfesor++;
                 cargarDatos(listaProfesores[indiceActualProfesor]);
             }
-
+            if (indiceActualProfesor == 0)
+            {
+                btnSegundo.IsEnabled = true;
+            }
+            if (indiceActualProfesor == listaProfesores.Count - 1)
+            {
+                btnTercero.IsEnabled=false;
+                btnCuarto.IsEnabled=false;
+            }
+            btnPrimero.IsEnabled = true;
+            btnSegundo.IsEnabled = true;
         }
 
         private void btnCuarto_Click(object sender, RoutedEventArgs e)
         {
             cargarDatos(listaProfesores[listaProfesores.Count - 1]);
-            indiceActualProfesor = listaProfesores.Count;
+            indiceActualProfesor = listaProfesores.Count - 1;
+            btnTercero.IsEnabled = false;
+            btnCuarto.IsEnabled = false;
+            btnPrimero.IsEnabled = true;
+            btnSegundo.IsEnabled = true;
         }
 
         private void agrupacion1(object sender, RoutedEventArgs e)
@@ -510,6 +546,7 @@ namespace ejercicio8DI
             seguroMedico.IsEnabled = true;
             btnGuardarUsuario.IsEnabled = true;
             anadirOActualizar = false;
+            btnCancelarUsuario.IsEnabled = true;
         }
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
@@ -526,7 +563,7 @@ namespace ejercicio8DI
                     context.Entry(p).State = EntityState.Deleted;
                     context.SaveChanges();
                     Abrir_Click(sender, new RoutedEventArgs(Button.ClickEvent));
-
+                    indiceActualProfesor = 0;
                 }
 
             }
@@ -561,6 +598,7 @@ namespace ejercicio8DI
                 {
                     Abrir_Click(sender, new RoutedEventArgs(Button.ClickEvent));
                     anadirRegistrosLista();
+                    activarDesactivarCamposText(true);
                 }
                 else
                 {
@@ -569,6 +607,7 @@ namespace ejercicio8DI
                 }
 
             }
+
 
         }
 
@@ -596,63 +635,97 @@ namespace ejercicio8DI
                 p.Nombre = tbNombre.Text;
                 p.Id = GenerarEmail(p.Nombre, p.apellidos);
                 p.Materia = "Sin Materia";
-                using (Contexto context = new Contexto())
-                {
-                    context.ProfesoresFuncionarios.Add(p);
-                    context.SaveChanges();
-                }
 
-                listaProfesores.Add(p);
+                if (!comprobarUsuarioExiste(p))
+                {
+                    Auxiliar.insercionBaseDatos(null, p);
+                    listaProfesores.Add(p);
+                }
+                else
+                {
+                    MessageBox.Show("Ese usuario ya existe");
+                }
+               
             }
 
         }
+
+
+        public bool comprobarUsuarioExiste(ProfesorFuncionario profesor) {
+
+            using (Contexto context = new Contexto())
+            {
+                foreach (var item in listaProfesores)
+                {
+                    if (item.Id == profesor.Id)
+                    {
+                        return true;
+                    }
+                   
+                }  
+                return false;
+            }
+
+        }
+
+
+
+
 
         public void actualizarUsuario()
         {
            ProfesorFuncionario p = listaProfesores[indiceActualProfesor];
 
-            using (Contexto context = new Contexto())
+
+            if (comprobarCampos())
             {
 
-                if ((bool)rbCarrera.IsChecked)
-                {
-                    p.tipoFuncionario = TipoFuncionario.DeCarrera;
+                    if ((bool)rbCarrera.IsChecked)
+                    {
+                        p.tipoFuncionario = TipoFuncionario.DeCarrera;
 
-                }
-                else if ((bool)rbPracticas.IsChecked)
-                {
-                    p.tipoFuncionario = TipoFuncionario.EnPracticas;
+                    }
+                    else if ((bool)rbPracticas.IsChecked)
+                    {
+                        p.tipoFuncionario = TipoFuncionario.EnPracticas;
 
-                }
-                p.AnyoIngresoCuerpo = Int32.Parse(tbIngreso.Text);
-                p.DestinoDefinitivo = (bool)destino.IsChecked;
-                p.nombreImagen = tbNombre.Text + ".png";
-                p.tipoMedico = seguroMedico.SelectedIndex == 0 ? EmpleadoPublico.TipoMedico.SS : EmpleadoPublico.TipoMedico.MUFACE;
-                p.Nombre = tbNombre.Text;
-                p.Id = GenerarEmail(p.Nombre, p.apellidos);
-                p.Materia = "Sin Materia";
+                    }
+                    p.AnyoIngresoCuerpo = Int32.Parse(tbIngreso.Text);
+                    p.DestinoDefinitivo = (bool)destino.IsChecked;
+                    p.tipoMedico = seguroMedico.SelectedIndex == 0 ? EmpleadoPublico.TipoMedico.SS : EmpleadoPublico.TipoMedico.MUFACE;
+                    p.Materia = "Sin Materia";
+                    Auxiliar.actualizarBaseDatos(null, p);
 
-                context.ProfesoresFuncionarios.Update(p);
-                context.SaveChanges();
-                }
+            }
+
+
 
         }
 
 
-            private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
             {
                 if (anadirOActualizar)
                 {
                     guardarUsuarioNuevo();
                     borrarCampos();
-
+               
             }
             else {
-                    actualizarUsuario();
 
+                    actualizarUsuario();
+                activarDesactivarCamposText(true);
             }
             btnGuardarUsuario.IsEnabled = false;
+            btnCancelarUsuario.IsEnabled = false;
         }
 
+        private void txtLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbNombre.Text.Length != 0 && tbApellidos.Text.Length != 0)
+            {
+                tbEmail.Text = GenerarEmail(tbNombre.Text, tbApellidos.Text);
+            }
+        }
     }
 }

@@ -67,7 +67,7 @@
             <Label Content="Email" HorizontalAlignment="Left" Margin="177,70,0,0" VerticalAlignment="Top" Width="60" Grid.Column="1"/>
             <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="242,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Grid.Column="1" IsReadOnly="True"/>
             <Label Content="Apellidos" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Width="60"/>
-            <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="3,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Grid.Column="1" IsReadOnly="True"/>
+            <TextBox x:Name="tbApellidos" LostFocus="txtLostFocus" HorizontalAlignment="Left" Margin="3,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Grid.Column="1" IsReadOnly="True"/>
             <Label Content="Edad" HorizontalAlignment="Left" Margin="19,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.716,0.502"/>
             <ComboBox x:Name="cbEdad" IsReadOnly="True" HorizontalAlignment="Left" Margin="3,154,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.395,0.275" Grid.Column="1"/>
             <Label x:Name="Año_Ingeso" Content="Año Ingreso&#xD;&#xA;" HorizontalAlignment="Left" Margin="87,151,0,0" VerticalAlignment="Top" Height="27" Grid.Column="1"/>
